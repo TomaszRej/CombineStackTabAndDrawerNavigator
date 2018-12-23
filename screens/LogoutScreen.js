@@ -4,8 +4,8 @@ import {View, Text,Button, StyleSheet, ActivityIndicator, AsyncStorage} from 're
 class LogoutScreen extends React.Component{
 
     logout = async () => {
-        const userToken =   await AsyncStorage.setItem('userToken','');
-        this.props.navigation.navigate('Auth');
+        AsyncStorage.clear();
+        this.props.navigation.navigate('AuthLoading');
     };
 
     render(){

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {createSwitchNavigator, createAppContainer, createStackNavigator, createDrawerNavigator, createBottomTabNavigator} from 'react-navigation';
 import AuthLoadingScreen from './screens/AuthLoadingScreen';
 import SignUpScreen from "./screens/SignUpScreen";
@@ -8,6 +8,7 @@ import WelcomeScreen from './screens/WelcomeScreen';
 import HomeScreen from "./screens/HomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import LogoutScreen from './screens/LogoutScreen';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const AuthStackNavigator = createStackNavigator({
@@ -26,7 +27,17 @@ const AppTabNavigator = createBottomTabNavigator({
 
 const AppStackNavigator = createStackNavigator({
     AppTabNavigator:{
-        screen: AppTabNavigator
+        screen: AppTabNavigator,
+        navigationOptions:({navigation}) => ({
+            title: 'App Name',
+            headerLeft: (
+                <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+                    <View style={{paddingHorizontal: 10}}>
+                        <Icon name='md-menu' size={24}/>
+                    </View>
+                </TouchableOpacity>
+            )
+        })
     }
 });
 const AppDrawerNavigator = createDrawerNavigator({
